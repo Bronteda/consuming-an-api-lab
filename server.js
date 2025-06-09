@@ -1,4 +1,3 @@
-//api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=c639726b3222c9219a370dc4c2f08aa5
 //dotenv
 const dotenv = require("dotenv");
 dotenv.config();
