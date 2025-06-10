@@ -16,7 +16,16 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.get("/weather/show", (req, res) => {});
+app.get("/weather/show", (req, res) => {
+  const name = req.query.name;
+  const temp =req.query.temp;
+  const description =req.query.description;
+
+  res.render("show.ejs",{name,temp,description});
+
+
+
+});
 
 app.post("/weather", async (req, res) => {
   const zipCode = req.body.zipCode;
@@ -27,11 +36,11 @@ app.post("/weather", async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
 
     if (response.ok) {
-      // res.redirect("/weather/show");
-      res.send("all good");
+      res.redirect(`/weather/show?name=${data.name}&temp=${data.main.temp}&description=${data.weather[0].description}`);
+      //console.log(data.weather[0].description);
     } else {
       console.log("response not okay");
     }
